@@ -16,5 +16,11 @@ export class ItemsService {
     return this.http.get<Item[]>(this.baseUrl);
   }
 
+  getItem(itemId): Observable<Item> {
+    return this.http.get<Item>(this.baseUrl + itemId);
+  }
 
+  toggleItem(itemId) {
+    this.http.put(this.baseUrl + 'toggle/' + itemId, {}).subscribe();
+  }
 }

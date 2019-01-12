@@ -26,6 +26,14 @@ namespace Test.API.Controllers
         }
 
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetItems(int id) 
+        {
+            var item = await _context.Items.FirstOrDefaultAsync(i => i.Id == id);
+            return Ok(item);
+        }
+
+
         [HttpPost("add")] 
         public async Task<IActionResult> AddItem(Item itemPost) 
         {
@@ -46,6 +54,19 @@ namespace Test.API.Controllers
             var item = await _context.Items.FirstOrDefaultAsync(itm => itm.Id == id);
             item.Name = itemPost.Name;
             item.Done = itemPost.Done;
+
+            _context.Items.Update(item);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+
+        [HttpPut("toggle/{id}")]
+        public async Task<IActionResult> ToggleItem(int id) 
+        {
+            var item = await _context.Items.FirstOrDefaultAsync(itm => itm.Id == id);
+            item.Done = !item.Done;
 
             _context.Items.Update(item);
             await _context.SaveChangesAsync();
