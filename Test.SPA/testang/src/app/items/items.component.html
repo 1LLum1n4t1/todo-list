@@ -1,6 +1,21 @@
-<p>
-  items works!
-</p>
-<ul>
-  <li *ngFor="let item of items; let idx = index; trackBy:idx">{{item.name}}</li>
-</ul>
+<h3 class="capitalText">TODO List</h3>
+
+<div class="undone-items">
+  <div *ngFor="let item of items; let idx = index; trackBy:idx" class="checkbox">
+    <label *ngIf="!item.done" class="container-undone">
+      <input type="checkbox" value="{{item.id}}" (click)="doStuff($event.target.value)"> {{item.id}}. {{item.name}}, {{item.done}}
+    </label>
+  </div>
+</div>
+<span>
+
+ <hr class="delimiter">
+
+</span>
+<div class="done-items">
+  <div *ngFor="let item of items; let idx = index; trackBy:idx" class="checkbox">
+    <label *ngIf="item.done"  class="container-done">
+      <input type="checkbox" value="{{item.id}}" (click)="doStuff($event.target.value)"> {{item.id}}. {{item.name}}, {{item.done}}
+    </label>
+  </div>
+</div>

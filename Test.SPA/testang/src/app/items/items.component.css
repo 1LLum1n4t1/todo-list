@@ -1,0 +1,32 @@
+body {
+    background-color: red;
+}
+
+.delimiter {
+   border-bottom: 1px solid black;
+   margin: 0 1% 0 1%;
+}
+
+.undone-items,
+.done-items  {
+    margin: 20px;
+}
+
+.container-undone {
+    margin-top: 15px;
+}
+
+.container-done {
+    text-decoration: line-through;
+}
+
+.capitalText {
+    margin-left: 10px;
+}
+
+.input {
+    background-color: red;
+}
+
+
+

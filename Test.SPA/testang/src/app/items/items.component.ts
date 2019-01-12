@@ -24,4 +24,8 @@ export class ItemsComponent implements OnInit {
         console.log(this.items);
       });
   }
+
+  doStuff(itemId) {
+    console.log(itemId);
+  }
 }
