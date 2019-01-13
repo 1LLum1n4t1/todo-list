@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Item } from '../_models/item.interface';
 import { Observable } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,15 +13,15 @@ export class ItemsService {
 
   constructor(private http: HttpClient) { }
 
-  getItems(): Observable<Item[]> {
+  public getItems(): Observable<Item[]> {
     return this.http.get<Item[]>(this.baseUrl);
   }
 
-  getItem(itemId): Observable<Item> {
-    return this.http.get<Item>(this.baseUrl + itemId);
+  public getItem(itemId): Observable<any> {
+    return this.http.get(this.baseUrl + itemId);
   }
 
-  toggleItem(itemId) {
+  public toggleItem(itemId): void {
     this.http.put(this.baseUrl + 'toggle/' + itemId, {}).subscribe();
   }
 }

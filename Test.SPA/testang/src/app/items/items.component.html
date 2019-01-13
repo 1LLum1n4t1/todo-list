@@ -3,7 +3,7 @@
 <div class="undone-items">
   <div *ngFor="let item of items; let idx = index; trackBy:idx" class="checkbox">
     <label *ngIf="!item.done" class="container-undone">
-      <input type="checkbox" value="{{item.id}}" (click)="toggleItem($event.target.value)"> {{item.id}}. {{item.name}}, {{item.done}}
+      <input type="checkbox"  value="{{item.id}}" (click)="toggleItem($event.target.value)"> {{item.id}}. {{item.name}}, {{item.done}}
     </label>
   </div>
 </div>
@@ -15,7 +15,7 @@
 <div class="done-items">
   <div *ngFor="let item of items; let idx = index; trackBy:idx" class="checkbox">
     <label *ngIf="item.done"  class="container-done">
-      <input type="checkbox" value="{{item.id}}" (click)="toggleItem($event.target.value)"> {{item.id}}. {{item.name}}, {{item.done}}
+      <input type="checkbox" checked="true" value="{{item.id}}" (click)="toggleItem($event.target.value)"> {{item.id}}. {{item.name}}, {{item.done}}
     </label>
   </div>
 </div>
