@@ -18,18 +18,16 @@ export class ItemsComponent implements OnInit {
     this.showItems();
   }
 
-  public showItems(): void {
-    this.itemsService.getItems().subscribe(items => {
+  public async showItems() {
+    await this.itemsService.getItems().subscribe(items => {
       this.items = items;
       console.log(items);
     });
   }
 
   public toggleItem(itemId): void {
-    this.itemsService.toggleItem(itemId);
-    console.log(itemId);
-    setTimeout(() =>
-      this.showItems(), 100);
-    }
+    this.itemsService.toggleItem(itemId).subscribe(() => {
+      this.showItems();
+    });
   }
-
+}

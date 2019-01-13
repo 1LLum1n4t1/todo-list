@@ -17,11 +17,11 @@ export class ItemsService {
     return this.http.get<Item[]>(this.baseUrl);
   }
 
-  public getItem(itemId): Observable<any> {
-    return this.http.get(this.baseUrl + itemId);
+  public getItem(itemId): Observable<Item> {
+    return this.http.get<Item>(this.baseUrl + itemId);
   }
 
-  public toggleItem(itemId): void {
-    this.http.put(this.baseUrl + 'toggle/' + itemId, {}).subscribe();
+  public toggleItem(itemId): Observable<Item> {
+    return this.http.put<Item>(this.baseUrl + 'toggle/' + itemId, {});
   }
 }
