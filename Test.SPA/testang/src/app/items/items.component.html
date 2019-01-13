@@ -1,5 +1,9 @@
 <h3 class="capitalText">TODO List</h3>
 
+<input type="text" 
+       placeholder="Type new item here..."
+       class="form-control">
+
 <div class="undone-items">
   <div *ngFor="let item of items; let idx = index; trackBy:idx" class="checkbox">
     <label *ngIf="!item.done" class="container-undone">

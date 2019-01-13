@@ -14,7 +14,7 @@ export class ItemsComponent implements OnInit {
 
   constructor(private itemsService: ItemsService) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     this.showItems();
   }
 

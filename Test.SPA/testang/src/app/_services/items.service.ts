@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Item } from '../_models/item.interface';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -9,19 +10,19 @@ import { Observable } from 'rxjs';
 })
 export class ItemsService {
 
-  baseUrl = 'http://localhost:5000/api/items/';
+  private _baseUrl = `${environment.apiUrl}/items/`;
 
   constructor(private http: HttpClient) { }
 
   public getItems(): Observable<Item[]> {
-    return this.http.get<Item[]>(this.baseUrl);
+    return this.http.get<Item[]>(this._baseUrl);
   }
 
   public getItem(itemId): Observable<Item> {
-    return this.http.get<Item>(this.baseUrl + itemId);
+    return this.http.get<Item>(this._baseUrl + itemId);
   }
 
   public toggleItem(itemId): Observable<Item> {
-    return this.http.put<Item>(this.baseUrl + 'toggle/' + itemId, {});
+    return this.http.put<Item>(this._baseUrl + 'toggle/' + itemId, {});
   }
 }
