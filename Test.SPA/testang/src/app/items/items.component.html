@@ -1,32 +1,37 @@
 <h3 class="capitalText">TODO List</h3>
 
-<input type="text" 
-       placeholder="Type new item here..."
-       class="form-control">
+<form #newItemForm="ngForm">
+<div class="input-group">
+  <input type="text" 
+         placeholder="Type new item here..." 
+         class="form-control"
+         id="new-item-input"
+         #newItemName
+         [(ngModel)]="newItemValue"
+         name="new-item-input"
+         >
+  <button type="submit" class="btn btn-submit" (click)="addNewItem(newItemName.value); clearTextBox()">Submit</button>
+</div>
+</form>
 
 <div class="undone-items">
   <div *ngFor="let item of items; let idx = index; trackBy:idx" class="checkbox">
     <label *ngIf="!item.done" class="container-undone">
-      <input type="checkbox"  
-             value="{{item.id}}" 
-             (click)="toggleItem($event.target.value)"> 
-          {{item.id}}. {{item.name}}, {{item.done}}
+      <input type="checkbox" value="{{item.id}}" (click)="toggleItem($event.target.value)">
+      {{item.id}}. {{item.name}}, {{item.done}}
     </label>
   </div>
 </div>
 
 <span>
- <hr class="delimiter">
+  <hr class="delimiter">
 </span>
 
 <div class="done-items">
   <div *ngFor="let item of items; let idx = index; trackBy:idx" class="checkbox">
-    <label *ngIf="item.done"  class="container-done">
-      <input type="checkbox" 
-             checked="true" 
-             value="{{item.id}}" 
-             (click)="toggleItem($event.target.value)"> 
-            {{item.id}}. {{item.name}}, {{item.done}}
+    <label *ngIf="item.done" class="container-done">
+      <input type="checkbox" checked="true" value="{{item.id}}" (click)="toggleItem($event.target.value)">
+      {{item.id}}. {{item.name}}, {{item.done}}
     </label>
   </div>
 </div>

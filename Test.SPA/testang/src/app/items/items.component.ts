@@ -11,6 +11,7 @@ import { map } from "rxjs/operators";
 })
 export class ItemsComponent implements OnInit {
   public items: Item[];
+  public newItemValue: string;
 
   constructor(private itemsService: ItemsService) {}
 
@@ -18,11 +19,13 @@ export class ItemsComponent implements OnInit {
     this.showItems();
   }
 
-  public async showItems() {
-    await this.itemsService.getItems().subscribe(items => {
+  public showItems() {
+    this.itemsService.getItems().subscribe(items => {
       this.items = items;
+      this.items.reverse();
       console.log(items);
     });
+
   }
 
   public toggleItem(itemId): void {
@@ -30,4 +33,15 @@ export class ItemsComponent implements OnInit {
       this.showItems();
     });
   }
+
+  public addNewItem(newItemName): void {
+    this.itemsService.addItem(newItemName).subscribe(() => {
+      this.showItems();
+    });
+  }
+
+  public clearTextBox() {
+    this.newItemValue = '';
+  }
+
 }

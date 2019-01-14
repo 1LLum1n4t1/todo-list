@@ -25,4 +25,8 @@ export class ItemsService {
   public toggleItem(itemId): Observable<Item> {
     return this.http.put<Item>(this._baseUrl + 'toggle/' + itemId, {});
   }
+
+  public addItem(itemName): Observable<Item> {
+    return this.http.post<Item>(this._baseUrl + 'add', {"name": itemName});
+  }
 }
