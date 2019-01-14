@@ -27,6 +27,10 @@ export class ItemsService {
   }
 
   public addItem(itemName): Observable<Item> {
-    return this.http.post<Item>(this._baseUrl + 'add', {"name": itemName});
+    return this.http.post<Item>(this._baseUrl + 'add', {'name': itemName});
+  }
+
+  public deleteItem(itemId): Observable<Item> {
+    return this.http.post<Item>(`${this._baseUrl}delete/${itemId}`, {});
   }
 }

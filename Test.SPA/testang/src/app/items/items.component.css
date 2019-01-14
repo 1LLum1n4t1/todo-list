@@ -2,15 +2,38 @@ body {
     background-color: red;
 }
 
+.capitalText {
+    padding: 30px 0 20px 0;
+    margin-left: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+
 .delimiter {
    border-bottom: 1px solid black;
    margin: 0 1% 0 1%;
 }
 
-.undone-items,
-.done-items
- {
+.items {
+    font-size: 15px;
     margin: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+
+.delete-item {
+    display: inline;
+    opacity: 0;
+    /* color: #FFCA28; */
+    margin: 0 10px 0 100px;
+    padding: 2px 10px 2px 10px;
+    border-radius: 3px;
+}
+
+
+.checkbox:hover .delete-item {
+    opacity: 1;
+    background-color: black;
+    color: white;
+    cursor: pointer;
 }
 
 .new-item {
@@ -25,17 +48,13 @@ body {
     text-decoration: line-through;
 }
 
-.capitalText {
-    margin-left: 20px;
-}
-
 .input {
     background-color: red;
 }
 
 .input-group {
-   margin: 20px;
-   width: 50%;
+   margin-left: 20px;
+   width: 400px;
 }
 
 .btn-submit {
