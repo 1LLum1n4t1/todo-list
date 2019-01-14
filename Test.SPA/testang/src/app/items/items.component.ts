@@ -25,16 +25,15 @@ export class ItemsComponent implements OnInit {
       this.items.reverse();
       console.log(items);
     });
-
   }
 
-  public toggleItem(itemId): void {
+  public toggleItem(itemId: number): void {
     this.itemsService.toggleItem(itemId).subscribe(() => {
       this.showItems();
     });
   }
 
-  public addNewItem(newItemName): void {
+  public addNewItem(newItemName: string): void {
     this.itemsService.addItem(newItemName).subscribe(() => {
       this.showItems();
     });
@@ -44,4 +43,9 @@ export class ItemsComponent implements OnInit {
     this.newItemValue = '';
   }
 
+  public deleteItem(itemId: number): void {
+    this.itemsService.deleteItem(itemId).subscribe(() => {
+      this.showItems();
+    });
+  }
 }

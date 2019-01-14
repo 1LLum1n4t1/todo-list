@@ -7,5 +7,7 @@ namespace Test.API.Models
         public string Name { get; set; }
 
         public bool Done { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }

@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +22,7 @@ namespace Test.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetItems() 
         {
-            var items = await _context.Items.ToListAsync();
+            var items = await _context.Items.Where(i => i.IsDeleted == false).ToListAsync();
             return Ok(items);
         }
 
@@ -29,7 +30,7 @@ namespace Test.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetItems(int id) 
         {
-            var item = await _context.Items.FirstOrDefaultAsync(i => i.Id == id);
+            var item = await _context.Items.FirstOrDefaultAsync(i => i.Id == id && i.IsDeleted == false);
             return Ok(item);
         }
 
@@ -40,6 +41,7 @@ namespace Test.API.Controllers
             var item = new Item();
             item.Name = itemPost.Name;
             item.Done = false;
+            item.IsDeleted = false;
 
             _context.Items.Add(item);
             await _context.SaveChangesAsync();
@@ -47,6 +49,19 @@ namespace Test.API.Controllers
             return Ok();
         }
 
+
+        [HttpPost("delete/{id}")] 
+        public async Task<IActionResult> DeleteItem(int id) 
+        {
+            var item = await _context.Items.FirstOrDefaultAsync(i => i.Id == id);
+            item.IsDeleted = true;
+
+            _context.Items.Update(item);
+            await _context.SaveChangesAsync();
+
+            return Ok();
+        }
+        
 
         [HttpPut("{id}")]
         public async Task<IActionResult> EditItem(int id, Item itemPost) 
